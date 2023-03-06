@@ -10,14 +10,13 @@ const testnetURL = 'https://rest-testnet.onflow.org'
 const network = 'testnet'
 
 const magic = new Magic("pk_live_73AAE8A5F81B1CF3", {
-    endpoint: 'http://localhost:3014',
     network: "goerli",
     locale: "en_US",
     extensions: [
       new ConnectExtension(),
       new FlowExtension({
         rpcUrl: testnetURL,
-        network
+        network,
       }),
     ]
   }
