@@ -1,20 +1,14 @@
-import {useState} from "react";
+import React, { useState } from "react";
 import "./styles.css";
-import {Magic} from "magic-sdk";
-import {ConnectExtension} from "@magic-ext/connect";
-import {FlowExtension} from '@magic-ext/flow';
+import { Magic } from "magic-sdk";
+import { FlowExtension } from '@magic-ext/flow';
 // @ts-ignore
 import * as fcl from "@onflow/fcl";
 
 const testnetURL = 'https://rest-testnet.onflow.org'
 const network = 'testnet'
-
-const magic = new Magic("pk_live_73AAE8A5F81B1CF3", {
-    endpoint: 'http://localhost:3014',
-    network: "goerli",
-    locale: "en_US",
+const magic = new Magic("YOUR_API_KEY", {
     extensions: [
-      new ConnectExtension(),
       new FlowExtension({
         rpcUrl: testnetURL,
         network
@@ -65,15 +59,13 @@ export default function App() {
   }
 
   const showWallet = () => {
-    magic.connect.showWallet().catch((e) => {
+    magic.wallet.showUI().catch((e) => {
       console.log(e);
     });
   };
 
   const disconnect = async () => {
-    await magic.connect.disconnect().catch((e) => {
-      console.log(e);
-    });
+    await magic.user.logout();
     setAccount('');
   };
 
