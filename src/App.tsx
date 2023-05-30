@@ -11,7 +11,7 @@ const magic = new Magic("YOUR_API_KEY", {
     extensions: [
       new FlowExtension({
         rpcUrl: testnetURL,
-        network
+        network,
       }),
     ]
   }
